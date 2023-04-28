@@ -20,6 +20,8 @@ Desta maneira você terá sua biblioteca minificada na pasta *dist*.
 
 Além disso o *Webpack* se encarrega de torna-la importável tanto pelo browser do cliente quanto por um servidor Node.js.
 
+Agora basta disponibilizar a *dist* para ser usado em seu HTML.
+
 ## Como publicar o pacote para uso por backend
 
 Existem [várias formas](https://medium.com/engenharia-noalvo/ways-to-have-your-private-npm-registry-and-a-final-diy-solution-eed001a88e74) de disponibilizar pacotes de maneira que possam ser instaladas pelo NPM, porém algumas requerem a criação de um servidor rodando uma aplicação para tal fim.
@@ -28,8 +30,20 @@ A seguir mencionamos algumas.
 
 ### Usando Git
 
-A forma mais fácil de disponibilizar o pacote é usando o próprio Git.
+A forma mais fácil de disponibilizar o pacote **para backend** é usando o próprio Git.
+Para isto basta que a aplicação que for usar o pacote referencie o repositório no *package.json*
 
+```json
+{
+  ...
+
+  "dependencies": {
+    "greetings": "git+https://github.com/samchenatti/sharedJSpackage.git"
+  }
+}
+```
+
+E seguir com o *npm install* como de costume.
 
 **Problema:** se a sua Function não for buildada localmente é possível que o ambiente não tenha acesso ao seu repositório privado.
 
